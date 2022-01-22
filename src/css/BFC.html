@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        background-color: rgb(224, 206, 247);
+        border: 5px solid rebeccapurple;
+        /* overflow: auto; */
+        /* display: flow-root */
+    }
+
+    .float {
+        float: left;
+        width: 200px;
+        height: 150px;
+        background-color: white;
+        border: 1px solid black;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <!-- 
+        设置float：left后，元素脱离文档流。
+        设置overflow:auto,或者不为visible的其他值，创建一个新的BFC来包含这个浮动
+        设置display: flow-root 不会产生副作用。
+     -->
+    <div class="box">
+        <div class="float">I am a floated box!</div>
+        <p>I am content inside the container.</p>
+    </div>
+</body>
+</html>

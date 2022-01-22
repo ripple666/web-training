@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        background-color: rgb(224, 206, 247);
+        border: 5px solid rebeccapurple;
+        /* overflow: auto; */
+        /* display: flow-root */
+    }
+
+    /* .box:after {
+        content: "";
+        display: block;
+        clear: both;
+    } */
+
+    .float {
+        float: left;
+        width: 200px;
+        height: 150px;
+        background-color: white;
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    .p {
+        /* clear: left; */
+    }
+    .blankDiv{
+        clear: both;
+    }
+</style>
+
+<body>
+
+    <div class="box">
+        <div class="float">I am a floated box!</div>
+        
+        <!-- <p class="p">I am content inside the container.</p> -->
+        <p class="p">I am content inside the container.</p>
+        <div class="blankDiv"></div>
+    </div>
+</body>
+
+</html>
+<!-- 
+    设置float：left后，元素脱离文档流。
+    1、clear:left 在左侧不允许浮动元素
+    2、给父元素设置伪元素
+-->
