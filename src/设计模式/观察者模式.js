@@ -1,4 +1,5 @@
 function Observer() {
+    console.log('this')
     // 被观察的对象
     this.object = {
 
@@ -6,7 +7,7 @@ function Observer() {
 }
 
 // 订阅函数，支持绑定被观察对象中的某个值
-Observer.prototype.bind = function (name: string, fn: (name:string,value)=>{}, value: any, target?: string) {
+Observer.prototype.bind = function (name, fn, value, target) {
     //
     this.object[name] = {
         value,
@@ -18,7 +19,7 @@ Observer.prototype.bind = function (name: string, fn: (name:string,value)=>{}, v
 }
 
 // 广播事件
-Observer.prototype.broadcast = function (name: string, value: any) {
+Observer.prototype.broadcast = function (name, value) {
     for (const key in this.object) {
         if (Object.hasOwnProperty.call(this.object, key)) {
             const element = this.object[key];
