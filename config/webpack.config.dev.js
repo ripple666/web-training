@@ -21,18 +21,12 @@ module.exports = merge(webpackBaseConfig, {
         filename: '[name].[hash:8].js',   // hash: 8只显示8位
         path: path.resolve(__dirname, '../build'),
     },
-    module: {
-        rules: [
-
-        ],
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../public/index.html'),
         }),// html模板
         new webpack.HotModuleReplacementPlugin(),
         new WebpackBar() // webpack进度条
-
     ],
     watch: true, // 启用 Watch 模式。这意味着在初始构建之后，webpack 将继续监听任何已解析文件的更改。
     devServer: {
