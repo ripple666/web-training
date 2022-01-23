@@ -12,8 +12,7 @@ module.exports = merge(webpackBaseConfig, {
         app: [
             // "babel-polyfill",
             path.resolve(__dirname, '../src/设计模式/index.js'),// 设计模式
-            // "./src/pages/home/index.jsx",
-            // "./src/pages/home/categorys/index.jsx"
+            path.resolve(__dirname, '../src/js/index.js'),// 设计模式
         ],
         // vendor: ["react", "better-scroll", "react-redux", "react-lazyload"]
     },

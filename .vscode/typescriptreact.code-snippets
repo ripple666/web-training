@@ -1,0 +1,100 @@
+{
+    // Place your snippets for typescriptreact here. Each snippet is defined under a snippet name and has a prefix, body and 
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+    // same ids are connected.
+    // Example:
+    "forward子组件": {
+        "prefix": "rffc",
+        "scope": "typescriptreact",
+        "body": [
+            "import { BaseComponentProps } from '@/typings';",
+            "import classNames from 'classnames';",
+            "import { useImperativeHandle, forwardRef, FC } from 'react';",
+            "import styles from \"./index.less\";",
+            "",
+            "export interface ${1}Props extends BaseComponentProps {",
+            "  ",
+            "}",
+            "",
+            "",
+            "export interface ${1}ForwardRefProps {}",
+            "",
+            "const ${1}:React.FC<${1}Props> = forwardRef((props,ref) =>{",
+            "  useImperativeHandle(ref, ():${1}ForwardRefProps => ({",
+            "",
+            "  }));",
+            "  return <div style={{...props.style}} className={classNames(styles.main,props.className)}></div>",
+            "})",
+            "",
+            "export default ${1};"
+        ],
+        "description": "React无状态函数"
+    },
+    "React无状态函数": {
+        "prefix": "rfc",
+        "scope": "typescriptreact",
+        "body": [
+            "import { BaseComponentProps } from '@/typings';",
+            "import classNames from 'classnames';",
+            "import styles from \"./index.less\";",
+            "",
+            "export interface ${1}Props extends BaseComponentProps {}",
+            "",
+            "const ${1}:React.FC<${1}Props> = (props) =>{",
+            "  return <div style={{...props.style}} className={classNames(styles.main,props.className)}></div>",
+            "}",
+            "",
+            "export default ${1};"
+        ],
+        "description": "React无状态函数"
+    },
+    "导入styles": {
+        "prefix": "ims",
+        "scope": "typescriptreact",
+        "body": [
+            "import styles from \"./index.less\";",
+        ],
+        "description": "import styles form './index.less"
+    },
+    "定义函数": {
+        "prefix": "fc",
+        "scope": "typescriptreact,typescript,javascript",
+        "body": [
+            "const ${1} = ()${2} =>{",
+            "  ${3}",
+            "}"
+        ]
+    },
+    "添加classNames": {
+        "prefix": "cls",
+        "scope": "typescriptreact,typescript,javascript",
+        "body": [
+            "className={styles.${1}}"
+        ]
+    },
+ 
+
+    "response函数":{
+        "prefix": "fcres",
+        "scope": "typescriptreact,typescript,javascript",
+        "body": [
+            "public static ${1}():Promise<ResponseData> {",
+            "   return request(\"${2}\", {",
+            "       method:\"${3}\",",
+            "       params:{${4}},",
+            "       data:{${5}},",
+            "   });",
+            "}",
+        ]
+    },
+
+    // "公共静态函数":{
+    //     "prefix": "psfc",
+    //     "scope": "typescriptreact,typescript,javascript",
+    //     "body": [
+    //         "public static ${1}() {",
+    //         "}",
+    //     ]
+    // },
+}

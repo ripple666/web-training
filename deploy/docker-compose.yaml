@@ -1,0 +1,9 @@
+version: "3"
+services:
+
+ fronted:
+   image:  long0419-docker.pkg.coding.net/onchain-plm/mileworks-ria/mileworks-ria:latest
+   container_name: mileworks-plm-ria
+   ports:
+     - "3000:80"
+   restart: always
