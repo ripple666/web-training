@@ -32,5 +32,5 @@ Observer.prototype.broadcast = function (name, value) {
 
 
 export default {
-    observerFunction: new Observer()
+    ObserverFunction: new Observer()
 }
