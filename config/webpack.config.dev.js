@@ -1,5 +1,4 @@
 const path = require('path')   // 相对路径变绝对路径
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack')
 const WebpackBar = require('webpackbar')

@@ -1,9 +1,8 @@
 const path = require('path')   // 相对路径变绝对路径
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack')
-const WebpackBar = require('webpackbar')
 
+// publicPath: 'https://cdn.example.com/assets/[fullhash]/', // 设置cdn
 const publicPath = './'
 
 module.exports = {
@@ -14,9 +13,6 @@ module.exports = {
     output: {
         filename: '[name]/index.[hash:8].js',   // hash: 8只显示8位
         path: path.resolve(__dirname, '../dist'),
-
-        // publicPath: 'https://cdn.example.com/assets/[fullhash]/',  设置cdn
-
         publicPath  // 给所有打包文件引入时加前缀，包括css，js，img，如果只想处理图片可以单独在url-loader配置中加publicPath
     },
     module: {
@@ -31,7 +27,7 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(), // 清除上一次dist
-        new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({// html模板
             template: path.resolve(__dirname, '../public/index.html'),
             filename: 'index.html', // 打包后生成文件
             // chunks: ['design'], // 将指定的js文件加入到index.html中
@@ -41,7 +37,7 @@ module.exports = {
                 collapseWhitespace: false, // 删除空白符与换行符
                 minifyCSS: true, // 压缩内联css
             },
-            // inject: true // script 标签的位置
-        }),// html模板
+            inject: true // script 标签的位置
+        }),
     ],
 }

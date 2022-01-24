@@ -5,22 +5,32 @@
  * - 在JavaScript中，几乎所有的对象都是Object类型的实例，它们都会从Object.prototype继承属性和方法，虽然大部分属性都会被覆盖（shadowed）或者说被重写了（overridden）。
  * 
  * ## 静态方法：
- * - Object.assign()；通过复制一个或多个对象来创建一个新的对象。
  * - Object.create(proto，[propertiesObject])；使用指定的原型对象和属性创建一个新对象。
+ * - Object.assign()；通过复制一个或多个对象来创建一个新的对象。
  * - Object.defineProperties()；给对象添加多个属性并分别指定它们的配置。
  * - Object.keys()；返回一个数组，包含所有给定对象自身可枚举属性名称的。
  * - Object.getOwnPropertyNames()；返回一个数组，它包含了指定对象所有的可枚举或不可枚举的属性名。
  * - Object.getOwnPropertyDescriptor()：返回对象指定的属性配置。
  * - Object.freeze()：冻结对象：其他代码不能删除或更改任何属性。
  * - Object.seal()；防止其他代码删除对象的属性。
+ * - Object.is()；比较两个值是否相同。所有 NaN 值都相等（这与==和===不同）。
  * - Object.entries()；返回给定对象自身可枚举属性的 [key, value] 数组。
  * - Object.getPrototypeOf()：返回指定对象的原型对象，即对象的__proto__。
  * - Object.setPrototypeOf()；设置对象的原型（即内部 [[Prototype]] 属性）。
+ * ...
+ * 
+ * ## 实例属性: 
+ * - Object.prototype.constructor；一个引用值，指向 Object 构造函数
+ * - Object.prototype.__proto__；指向一个对象，当一个 object 实例化时，使用该对象作为实例化对象的原型
  * 
  * ## 实例方法：
- * Object.prototype.hasOwnProperty()；返回一个布尔值，用于表示一个对象自身是否包含指定的属性，该方法并不会查找原型链上继承来的属性。
- * Object.prototype.toString()；返回一个代表该对象的字符串。
- * Object.prototype.isPrototypeOf()：返回一个布尔值，用于表示该方法所调用的对象是否在指定对象的原型链中。
+ * - Object.prototype.hasOwnProperty()；返回一个布尔值，用于表示一个对象自身是否包含指定的属性，该方法并不会查找原型链上继承来的属性。
+ * - Object.prototype.toString()；返回一个代表该对象的字符串。
+ * - Object.prototype.isPrototypeOf()：返回一个布尔值，用于表示该方法所调用的对象是否在指定对象的原型链中。
+ * ...
+ * 
+ * ## 深拷贝
+ * 
  */
 
 /**
@@ -35,20 +45,8 @@ const person = {
         console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
     }
 };
-
 const me = Object.create(person);
-
-me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
-me.isHuman = true; // inherited properties can be overwritten
-
-me.printIntroduction();
-
-// 用 Object.create实现类式继承
-// Shape - 父类(superclass)
-function Shape() {
-    this.x = 0;
-    this.y = 0;
-}
+console.log(me.__proto__ === person) // true
 
 // 父类的方法
 Shape.prototype.move = function (x, y) {
@@ -62,16 +60,10 @@ function Rectangle() {
     Shape.call(this); // call super constructor.
 }
 
-// 子类续承父类
-Rectangle.prototype = Object.create(Shape.prototype);
-Rectangle.prototype.constructor = Rectangle;
-
-var rect = new Rectangle();
-
-console.log(rect instanceof Rectangle); // true
-console.log(rect instanceof Shape); // true
-
-// Object.assign()
+/**
+ * Object.assign()
+ * 
+ */
 var a = {
     a: {
         b: 1
@@ -85,13 +77,13 @@ var b = {
 var c = Object.assign(a, b)
 console.log(c === a) // true
 console.log(a)
+// output：
 // {
 //     a: {
 //         b: 2
 //     }
 // }
 
-// Object.create
 
 
 // Object.defineProperty
@@ -113,13 +105,20 @@ Object.defineProperty(
             // 中间可以实施其他操作
             property1 = value;
         }
-    });
+    }
+);
 
-object1.property1 = 77;
 for (const key in object1) {
     console.log(key);
     if (Object.hasOwnProperty.call(object1, key)) {
         const element = object1[key];
-
     }
 }
+
+/**
+ * 对象拷贝
+ * - JSON.parse(JSON.stringify(copyObj))，无法拷贝函数、原型链上的方法和属性。
+ * - 普通递归函数，层次过深会栈溢出
+ * 
+ * 
+ */
